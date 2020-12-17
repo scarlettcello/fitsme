@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.0",
     "cors": "^2.8.5",
+    "dayjs": "^1.9.7",
     "express": "^4.17.1",
     "http-proxy-middleware": "^1.0.6",
     "react": "^17.0.1",

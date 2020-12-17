@@ -1,33 +1,27 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 
-const FoodForm = ({
-  caloriesAmount,
-  carbsAmount,
-  fatAmount,
-  proteinAmount,
-  onSubmit,
-}) => {
-  const [date, setDate] = useState("");
-  const [mealTime, setMealTime] = useState("");
-  const [takenCalories, setTakenCalories] = useState(0);
-  const [takenCarbs, setTakenCarbs] = useState(0);
-  const [takenFat, setTakenFat] = useState(0);
-  const [takenProtein, setTakenProtein] = useState(0);
+const FoodForm = ({ eatenFood, caloriesPerAmount, onSubmit }) => {
+  const [date, setDate] = useState(
+    eatenFood !== undefined ? new Date(eatenFood.date) : ""
+  );
+  const [mealTime, setMealTime] = useState(
+    eatenFood !== undefined ? eatenFood.mealTime : ""
+  );
+
+  const [portion, setPortion] = useState(
+    eatenFood !== undefined ? eatenFood.portion : 0
+  );
+
   const [errorMsg, setErrorMsg] = useState("");
 
   const onDateChange = (date) => {
-    console.log(date);
     setDate(date);
-    console.log(date);
   };
 
   const onPortionChange = (e) => {
-    const portion = parseFloat(e.target.value);
-    setTakenCalories(caloriesAmount * portion);
-    setTakenCarbs(carbsAmount * portion);
-    setTakenFat(fatAmount * portion);
-    setTakenProtein(proteinAmount * portion);
+    const inputPortion = parseFloat(e.target.value);
+    setPortion(inputPortion);
   };
 
   const onMealTimeChange = (e) => {
@@ -41,20 +35,23 @@ const FoodForm = ({
       setErrorMsg("Select the date");
     } else if (mealTime === "") {
       setErrorMsg("Select the meal time");
-    } else if (!takenCalories || takenCalories === 0) {
+    } else if (!portion || portion === 0) {
       setErrorMsg("Insert the portion");
     } else {
       setErrorMsg("");
       onSubmit({
+        caloriesPerAmount,
         date,
         mealTime,
-        takenCalories,
-        takenCarbs,
-        takenFat,
-        takenProtein,
+        portion,
       });
     }
   };
+
+  const takenCalories =
+    eatenFood !== undefined
+      ? eatenFood.caloriesPerAmount * portion
+      : caloriesPerAmount * portion;
 
   return (
     <form onSubmit={handleSubmit}>
@@ -71,7 +68,12 @@ const FoodForm = ({
       </select>
 
       <label>Portions:</label>
-      <input type="number" onChange={onPortionChange} step="0.01" />
+      <input
+        type="number"
+        onChange={onPortionChange}
+        step="0.01"
+        value={portion}
+      />
 
       <h4>Calories taken: {isNaN(takenCalories) ? null : takenCalories}</h4>
 

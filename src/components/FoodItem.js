@@ -17,7 +17,7 @@ const FoodItem = (props) => {
   const onSelectClick = () => {
     const food = { id, foodName, amount, calories, carbs, fat, protein };
     props.setFood(food);
-    history.push(`/AddFood/${food.id}`);
+    history.push(`/add/${food.id}`);
   };
 
   return (

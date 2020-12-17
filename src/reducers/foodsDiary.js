@@ -14,8 +14,8 @@ const foodsDiaryReducer = (state = [], action) => {
           return food;
         }
       });
-    case "SET_FOODS":
-      return action.foods;
+    case "SET_EATEN_FOODS":
+      return action.eatenFoods;
     default:
       return state;
   }

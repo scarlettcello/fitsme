@@ -5,11 +5,12 @@ import configureStore from "./store/configureStore";
 import AppRoute from "./routes/AppRoute";
 
 import "react-datepicker/dist/react-datepicker.css";
+import eatenFoods from "./eatenFoods";
+import { setEatenFoods } from "./actions/foodsDiary";
 
 const store = configureStore();
-store.subscribe(() => {
-  console.log(store.getState().lastAction);
-});
+
+store.dispatch(setEatenFoods(eatenFoods));
 
 ReactDOM.render(
   <Provider store={store}>
