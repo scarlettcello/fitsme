@@ -1,24 +1,17 @@
-import React, { useState } from 'react';
+import React from "react";
 
-const SearchBar = ({ onFormSubmit }) => {
-  const [term, setTerm] = useState('');
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    onFormSubmit(term);
-  }
-
+const SearchBar = ({ term, onTermChange, onFormSubmit }) => {
   return (
-    <form onSubmit={onSubmit}>
-      <input 
-        type="text" 
-        placeholder="What did you eat?" 
+    <form onSubmit={onFormSubmit}>
+      <input
+        type="text"
+        placeholder="What did you eat?"
         value={term}
-        onChange={(e) => setTerm(e.target.value)}
+        onChange={onTermChange}
       />
-      <h3>{term}</h3>
+      <button type="submit">Search</button>
     </form>
   );
-}
+};
 
 export default SearchBar;

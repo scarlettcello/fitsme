@@ -16,7 +16,7 @@ export default [
     id: "2",
     amount: "per 1 Banana",
     caloriesPerAmount: 88,
-    date: "Wed Dec 12 2020",
+    date: "Sat Dec 19 2020",
     foodName: "banana",
     mealTime: "Lunch",
     portion: 0.9,

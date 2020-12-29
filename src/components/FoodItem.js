@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { setFood } from "../actions/foodsDiary";
 import history from "../history";
@@ -16,6 +16,7 @@ const FoodItem = (props) => {
 
   const onSelectClick = () => {
     const food = { id, foodName, amount, calories, carbs, fat, protein };
+    console.log(props);
     props.setFood(food);
     history.push(`/add/${food.id}`);
   };
@@ -37,7 +38,7 @@ const FoodItem = (props) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  setFood: (food) => console.log(dispatch(setFood(food))),
+  setFood: (food) => dispatch(setFood(food)),
 });
 
-export default connect(undefined, mapDispatchToProps)(FoodItem);
+export default connect(null, mapDispatchToProps)(FoodItem);

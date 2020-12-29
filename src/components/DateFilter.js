@@ -1,16 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import DatePicker from "react-datepicker";
 import { setSelectedDate } from "../actions/filters";
+import dayjs from "dayjs";
 
-export const DateFilter = (props) => {
+export const DateFilter = ({ setSelectedDate }) => {
+  useEffect(() => {
+    const today = dayjs().format("ddd MMM DD YYYY");
+    setSelectedDate(today);
+  }, [setSelectedDate]);
+
   const handleChange = (selectedDate) => {
-    props.setSelectedDate(selectedDate);
+    setSelectedDate(selectedDate);
   };
 
   return (
     <div>
-      <DatePicker selected={props.selectedDate} onChange={handleChange} />
+      <DatePicker onChange={handleChange} />
     </div>
   );
 };

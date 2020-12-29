@@ -5,7 +5,7 @@ import EatenFoodList from "./EatenFoodList";
 const Dashboard = () => {
   return (
     <div>
-      <DateFilter />
+      Choose the date: <DateFilter />
       <EatenFoodList />
     </div>
   );

@@ -1,13 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const EatenFood = ({ id, date, foodName, mealTime, takenCalories }) => {
+const EatenFood = ({ id, foodName, mealTime, caloriesPerAmount, portion }) => {
   return (
     <Link to={`/edit/${id}`}>
-      <p>{date}</p>
       <p>{mealTime}</p>
       <p>{foodName}</p>
-      <p>{takenCalories}kcal</p>
+      <p>{caloriesPerAmount * portion}kcal</p>
     </Link>
   );
 };

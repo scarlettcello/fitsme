@@ -1,16 +1,12 @@
-import React from 'react'
-import FoodItem from './FoodItem';
+import React from "react";
+import FoodItem from "./FoodItem";
 
-const SearchResult = ({foods}) => {
-  const renderedList = foods.map(item => {
-    return (
-      <FoodItem
-        key={item.food_id}
-        food={item}
-      />
-    )
+const SearchResult = ({ foods }) => {
+  console.log(foods);
+  const renderedList = foods.map((item) => {
+    return <FoodItem key={item.food_id} food={item} />;
   });
-  return <div>{renderedList}</div>
-}
+  return <div>{renderedList}</div>;
+};
 
 export default SearchResult;

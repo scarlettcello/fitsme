@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
+import dayjs from "dayjs";
 
 const FoodForm = ({ eatenFood, caloriesPerAmount, onSubmit }) => {
   const [date, setDate] = useState(
-    eatenFood !== undefined ? new Date(eatenFood.date) : ""
+    eatenFood !== undefined ? new Date(eatenFood.createdDate) : ""
   );
   const [mealTime, setMealTime] = useState(
     eatenFood !== undefined ? eatenFood.mealTime : ""
@@ -39,9 +40,10 @@ const FoodForm = ({ eatenFood, caloriesPerAmount, onSubmit }) => {
       setErrorMsg("Insert the portion");
     } else {
       setErrorMsg("");
+      let createdDate = dayjs(date).format("ddd MMM DD YYYY");
       onSubmit({
         caloriesPerAmount,
-        date,
+        createdDate,
         mealTime,
         portion,
       });

@@ -1,12 +1,15 @@
 import dayjs from "dayjs";
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default (eatenFoods, { selectedDate }) => {
+const selectEatenFoods = (eatenFoods, { selectedDate }) => {
+  const selectedDateString = dayjs(selectedDate).format("ddd MMM DD YYYY");
+  console.log(eatenFoods);
+
   return eatenFoods
     .filter((food) => {
-      const createdDate = food.date;
+      const createdDate = food.createdDate;
       const dateMatch = selectedDate
-        ? dayjs(selectedDate).isSame(createdDate)
+        ? selectedDateString === createdDate
         : true;
       return dateMatch;
     })
@@ -21,3 +24,5 @@ const sortByMealTime = {
   Snack: 2,
   Dinner: 3,
 };
+
+export default selectEatenFoods;
