@@ -28,7 +28,6 @@ const DaysSummary = ({ totalCalories, date }) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
   const todaysFoods = selectEatenFoods(state.foodsDiary, state.filters);
   return {
     totalCalories: daysTotal(todaysFoods),
