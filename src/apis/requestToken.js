@@ -19,11 +19,9 @@ const options = {
     scope: "basic",
   },
   json: true,
-  mode: "no-cors",
 };
 
 export default request(options, (error, response, body) => {
   if (error) throw new Error(error);
-  console.log(response);
   localStorage.setItem("token", body.access_token);
 });
