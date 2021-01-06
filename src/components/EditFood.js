@@ -17,7 +17,6 @@ const EditFood = (props) => {
   };
 
   const handleRemove = () => {
-    console.log(props.eatenFood.id);
     props.startRemoveFood({ id: props.eatenFood.id });
     props.history.push("/dashboard");
   };
@@ -35,18 +34,28 @@ const EditFood = (props) => {
     history.push("/dashboard");
   };
 
+  const onCancelClick = () => {
+    history.push("/calendar");
+  };
+
   return (
-    <div>
+    <div className="content-container">
       <h2>{props.eatenFood.foodName}</h2>
       <h3>Amount: {props.eatenFood.amount} </h3>
       <h3>Calories: {props.eatenFood.caloriesPerAmount}kcal</h3>
-      <FoodForm onSubmit={onFormSubmit} eatenFood={props.eatenFood} />
+      <FoodForm
+        onSubmit={onFormSubmit}
+        eatenFood={props.eatenFood}
+        onCancelClick={onCancelClick}
+      />
       <RemoveModal
         isOpen={isOpen}
         handleCloseModal={handleCloseModal}
         onClickRemove={handleRemove}
       />
-      <button onClick={handleOpenModal}>Remove</button>
+      <button className="button button--danger" onClick={handleOpenModal}>
+        Remove Food
+      </button>
     </div>
   );
 };

@@ -1,0 +1,80 @@
+.button-group {
+  display: inline-block;
+  .button {
+    &:last-child {
+      margin-left: $m-size;
+    }
+  }
+}
+
+.button {
+  background: $green;
+  border: none;
+  color: white;
+  display: inline-block;
+  font-size: $font-size-md;
+  font-weight: 300;
+  line-height: 1;
+  padding: $s-size;
+  text-decoration: none;  
+}
+
+.button {
+  &:focus, &:hover {
+    background: #849bbf;
+  }
+}
+
+.button--link {
+  background: none;
+  color: $green;
+  font-weight: 600;
+}
+
+.button--secondary {
+  background: $grey;
+}
+
+.button--danger {
+  background: red;
+}
+
+.button--social {  
+  background: rgba(158,158,158,.2);
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+  border: none;
+  border-radius: 3px;
+  color: white;
+  font-size: $font-size-sm;
+  font-weight: 600;
+  height: 45px;
+  margin-top: $s-size;
+  width: 240px;
+  text-align: left;
+  
+  &:focus, &:hover {
+    cursor: pointer;
+  }
+  .icon--social {
+    border: none;
+    display: inline-block;
+    height: 22px;
+    vertical-align: middle;
+    margin: 0 $s-size;
+    width: 22px;
+  }
+}
+
+.button--facebook {
+  background-color: #1877F2;
+}
+
+.button--google {
+  background-color: white;
+  color: $grey;
+}
+
+.button--github {
+  background-color: $dark-grey;
+}
+

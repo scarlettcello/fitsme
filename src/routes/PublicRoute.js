@@ -4,20 +4,36 @@ import { Route, Redirect } from "react-router-dom";
 
 export const PublicRoute = ({
   isAuthenticated,
+  isFoodSearched,
   component: Component,
+  foods,
+  foodsDiary,
   ...rest
-}) => (
-  <Route
-    {...rest}
-    component={(props) =>
-      isAuthenticated ? <Redirect to="/dashboard" /> : <Component {...props} />
-    }
-  />
-);
+}) => {
+  return (
+    <Route
+      {...rest}
+      component={(props) =>
+        isAuthenticated ? (
+          isFoodSearched ? (
+            <Redirect to={`/add/${foods.id}`} />
+          ) : (
+            <Redirect to="/dashboard" />
+          )
+        ) : (
+          <Component {...props} />
+        )
+      }
+    />
+  );
+};
 
 const mapStateToProps = (state) => {
   return {
     isAuthenticated: !!state.auth.uid,
+    isFoodSearched: !!state.foods.calories,
+    foods: state.foods,
+    foodsDiary: state.foodsDiary,
   };
 };
 

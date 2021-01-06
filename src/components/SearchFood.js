@@ -1,46 +1,40 @@
 import React, { useState } from "react";
 import useFatsecret from "../hooks/useFatsecret";
+import { connect } from "react-redux";
 import SearchBar from "./SearchBar";
 import SearchResult from "./SearchResult";
-import history from "../history";
-import { Redirect } from "react-router-dom";
+import { setFoods } from "../actions/foods";
 
 const SearchFood = () => {
   const [foods, search] = useFatsecret();
   const [term, setTerm] = useState("");
+  const [isFoodSearched, setIsFoodSearched] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(term);
     search(term);
+    setFoods(foods);
+    setIsFoodSearched(true);
   };
 
   const handleTermChange = (e) => {
-    console.log(e.target.value);
     setTerm(e.target.value);
   };
 
   return (
-    <div>
+    <>
       <SearchBar
         term={term}
         onFormSubmit={handleSubmit}
         onTermChange={handleTermChange}
       />
-      {/* {foods.length > 0 ? (
-        <Redirect to={{ pathname: "/searchResult", state: { foods: foods } }} />
-      ) : (
-        console.log(foods)
-      )} */}
-      <SearchResult foods={foods} />
-    </div>
+      <SearchResult isFoodSearched={isFoodSearched} foods={foods} />
+    </>
   );
 };
 
-export default SearchFood;
+const mapDispatchToProps = (dispatch) => ({
+  setFoods: (foods) => dispatch(setFoods(foods)),
+});
 
-// const mapDispatchToProps = (dispatch) => ({
-//   setFoods: (foods) => console.log(dispatch(setFoods(foods))),
-// });
-
-// export default connect(undefined, mapDispatchToProps)(SearchFood);
+export default connect(undefined, mapDispatchToProps)(SearchFood);

@@ -1,17 +1,5 @@
 import database from "../firebase/firebase";
 
-// set the selected food item in the form to add or edit
-export const setFood = (food) => ({
-  type: "SET_FOOD",
-  food,
-});
-
-// set the list of selected food in the search result
-export const setFoods = (foods) => ({
-  type: "SET_FOODS",
-  foods,
-});
-
 // add the eaten food item
 export const addFood = (eatenFood) => ({
   type: "ADD_FOOD",
@@ -20,7 +8,7 @@ export const addFood = (eatenFood) => ({
 
 export const startAddFood = (eatenFoodData = {}) => {
   return (dispatch, getState) => {
-    //const uid = getState().auth.uid;
+    const uid = getState().auth.uid;
     const {
       amount = 0,
       caloriesPerAmount = 0,
@@ -44,7 +32,7 @@ export const startAddFood = (eatenFoodData = {}) => {
       proteinAmount,
     };
     return database
-      .ref(`eatenFoods`)
+      .ref(`users/${uid}/eatenFoods`)
       .push(eatenFood)
       .then((ref) => {
         dispatch(addFood({ id: ref.key, ...eatenFood }));
@@ -60,9 +48,9 @@ export const editFood = (id, updates) => ({
 
 export const startEditFood = (id, updates) => {
   return (dispatch, getState) => {
-    //const uid = getState().auth.uid;
+    const uid = getState().auth.uid;
     return database
-      .ref(`eatenFoods/${id}`)
+      .ref(`users/${uid}/eatenFoods/${id}`)
       .update(updates)
       .then(() => {
         dispatch(editFood(id, updates));
@@ -72,7 +60,6 @@ export const startEditFood = (id, updates) => {
 
 // set all eaten food items filtered by certain date
 export const setEatenFoods = (eatenFoods) => {
-  console.log(eatenFoods);
   return {
     type: "SET_EATEN_FOODS",
     eatenFoods,
@@ -81,9 +68,9 @@ export const setEatenFoods = (eatenFoods) => {
 
 export const startSetEatenFoods = () => {
   return (dispatch, getState) => {
-    //const uid = getState().auth.uid;
+    const uid = getState().auth.uid;
     return database
-      .ref(`eatenFoods`)
+      .ref(`users/${uid}/eatenFoods`)
       .once("value")
       .then((snapshot) => {
         const eatenFoods = [];
@@ -107,9 +94,9 @@ export const removeFood = ({ id } = {}) => ({
 
 export const startRemoveFood = ({ id } = {}) => {
   return (dispatch, getState) => {
-    //const uid = getState().auth.uid;
+    const uid = getState().auth.uid;
     return database
-      .ref(`eatenFoods/${id}`)
+      .ref(`users/${uid}/eatenFoods/${id}`)
       .remove()
       .then(() => {
         dispatch(removeFood({ id }));

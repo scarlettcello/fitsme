@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import dayjs from "dayjs";
 
-const FoodForm = ({ eatenFood, caloriesPerAmount, onSubmit }) => {
+const FoodForm = ({
+  eatenFood,
+  caloriesPerAmount,
+  isCancellable,
+  onSubmit,
+  onCancelClick,
+}) => {
   const [date, setDate] = useState(
     eatenFood !== undefined ? new Date(eatenFood.createdDate) : ""
   );
@@ -56,12 +62,20 @@ const FoodForm = ({ eatenFood, caloriesPerAmount, onSubmit }) => {
       : caloriesPerAmount * portion;
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="form" onSubmit={handleSubmit}>
       <label>Date:</label>
-      <DatePicker selected={date} onChange={onDateChange} />
+      <DatePicker
+        className="text-input"
+        selected={date}
+        onChange={onDateChange}
+        style={{
+          height: "auto",
+          width: "auto",
+        }}
+      />
 
-      <label>Meal time</label>
-      <select onChange={onMealTimeChange} value={mealTime}>
+      <label>Meal time:</label>
+      <select className="select" onChange={onMealTimeChange} value={mealTime}>
         <option value="">Select when you ate it</option>
         <option value="Breakfast">Breakfast</option>
         <option value="Lunch">Lunch</option>
@@ -71,6 +85,7 @@ const FoodForm = ({ eatenFood, caloriesPerAmount, onSubmit }) => {
 
       <label>Portions:</label>
       <input
+        className="text-input"
         type="number"
         onChange={onPortionChange}
         step="0.01"
@@ -80,7 +95,14 @@ const FoodForm = ({ eatenFood, caloriesPerAmount, onSubmit }) => {
       <h4>Calories taken: {isNaN(takenCalories) ? null : takenCalories}</h4>
 
       <p>{errorMsg !== "" ? errorMsg : null}</p>
-      <button type="submit">Submit</button>
+      <div className="button-group">
+        <button className="button" type="submit">
+          Submit
+        </button>
+        <button className="button button--secondary" onClick={onCancelClick}>
+          Cancel
+        </button>
+      </div>
     </form>
   );
 };

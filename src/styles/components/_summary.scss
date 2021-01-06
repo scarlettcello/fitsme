@@ -1,0 +1,18 @@
+.summary {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.summary-title {
+  span {
+    color: red;
+  }
+}
+
+img {
+  max-width: 60px;
+  &:hover {
+    opacity: 0.5;
+  }
+}

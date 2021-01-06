@@ -1,0 +1,38 @@
+.input-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: $m-size;
+
+  div {
+    border-radius: 0px;
+    
+    span {
+      border-radius: 3px;  
+      background: $dark-grey;
+      margin: 0 5px;
+      padding: 3px 6px 3px 10px;
+      
+      i {
+        font-size: 1.8rem;
+        font-weight: 100;
+      }
+    }
+  } 
+  
+  @media (min-width: $desktop-breakpoint) {
+    flex-direction: row;
+    margin-bottom: $l-size;
+  }
+}
+
+.input-group__item {
+  margin: $s-size 0;
+  &:last-child {
+    margin-right: 0;
+  }
+
+  @media (min-width: $desktop-breakpoint) {
+    margin: 0 $s-size 0 0;
+  }
+}

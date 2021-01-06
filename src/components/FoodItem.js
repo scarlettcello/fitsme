@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { setFood } from "../actions/foodsDiary";
-import history from "../history";
+import { Link } from "react-router-dom";
+import { setFood } from "../actions/foods";
 
 const FoodItem = (props) => {
   let id = props.food.food_id;
@@ -14,31 +14,45 @@ const FoodItem = (props) => {
   let carbs = nutrition[2];
   let protein = nutrition[3];
 
+  const selectedFood = {
+    id,
+    foodName,
+    amount,
+    calories,
+    carbs,
+    fat,
+    protein,
+  };
+
   const onSelectClick = () => {
-    const food = { id, foodName, amount, calories, carbs, fat, protein };
-    console.log(props);
-    props.setFood(food);
-    history.push(`/add/${food.id}`);
+    props.setFood(selectedFood);
   };
 
   return (
-    <div>
-      <div>
+    <Link
+      className="list-item container"
+      to={`/add/${selectedFood.id}`}
+      onClick={onSelectClick}
+    >
+      <div className="column-a">
         <h3>{foodName}</h3>
-        <p>
+      </div>
+      <div className="column-b">
+        <h4>
           {amount}, {calories}
-        </p>
+        </h4>
+      </div>
+      <div className="column-c">
         <p>
           {carbs}, {fat}, {protein}
         </p>
       </div>
-      <button onClick={onSelectClick}>Select</button>
-    </div>
+    </Link>
   );
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  setFood: (food) => dispatch(setFood(food)),
+  setFood: (selectedFood) => dispatch(setFood(selectedFood)),
 });
 
 export default connect(null, mapDispatchToProps)(FoodItem);

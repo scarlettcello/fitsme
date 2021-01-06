@@ -6,26 +6,30 @@ import Header from "../components/Header";
 export const PrivateRoute = ({
   isAuthenticated,
   component: Component,
+  foodsDiary,
   ...rest
-}) => (
-  <Route
-    {...rest}
-    component={(props) =>
-      isAuthenticated ? (
-        <div>
-          <Header />
-          <Component {...props} />
-        </div>
-      ) : (
-        <Redirect to="/" />
-      )
-    }
-  />
-);
+}) => {
+  return (
+    <Route
+      {...rest}
+      component={(props) =>
+        isAuthenticated ? (
+          <div>
+            <Header />
+            <Component {...props} />
+          </div>
+        ) : (
+          <Redirect to="/Login" />
+        )
+      }
+    />
+  );
+};
 
 const mapStateToProps = (state) => {
   return {
     isAuthenticated: !!state.auth.uid,
+    foodsDiary: state.foodsDiary,
   };
 };
 

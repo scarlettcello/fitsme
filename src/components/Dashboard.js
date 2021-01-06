@@ -1,11 +1,13 @@
 import React from "react";
-import DateFilter from "./DateFilter";
 import EatenFoodList from "./EatenFoodList";
+import SearchFood from "./SearchFood";
+import DaysSummary from "./DaysSummary";
 
 const Dashboard = () => {
   return (
     <div>
-      Choose the date: <DateFilter />
+      <SearchFood />
+      <DaysSummary />
       <EatenFoodList />
     </div>
   );
