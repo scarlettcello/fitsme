@@ -22,15 +22,14 @@ const EditFood = (props) => {
   };
 
   const onFormSubmit = (updatedFood) => {
-    updatedFood.id = props.eatenFood.id;
+    const id = props.eatenFood.id;
     updatedFood.foodName = props.eatenFood.foodName;
     updatedFood.caloriesPerAmount = props.eatenFood.caloriesPerAmount;
     updatedFood.amount = props.eatenFood.amount;
     updatedFood.carbsAmount = props.eatenFood.carbsAmount;
     updatedFood.fatAmount = props.eatenFood.fatAmount;
     updatedFood.proteinAmount = props.eatenFood.proteinAmount;
-    props.startEditFood(updatedFood.id, updatedFood);
-    console.log(updatedFood);
+    props.startEditFood(id, updatedFood);
     history.push("/dashboard");
   };
 
@@ -61,7 +60,6 @@ const EditFood = (props) => {
 };
 
 const mapStateToProps = (state, props) => {
-  console.log(state);
   const subjectFood = state.foodsDiary.find(
     (food) => food.id === props.match.params.id
   );

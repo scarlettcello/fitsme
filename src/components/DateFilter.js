@@ -6,7 +6,6 @@ import { setSelectedDate } from "../actions/filters";
 const DateFilter = ({ setSelectedDate }) => {
   const handleChange = (selectedDate) => {
     setSelectedDate(selectedDate);
-    console.log(selectedDate);
   };
 
   return (

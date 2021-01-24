@@ -10,7 +10,7 @@ export const startAddFood = (eatenFoodData = {}) => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
     const {
-      amount = 0,
+      amount = "",
       caloriesPerAmount = 0,
       carbsAmount = 0,
       createdDate = "",

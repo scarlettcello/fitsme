@@ -11,7 +11,7 @@ const EatenFood = ({ id, foodName, mealTime, caloriesPerAmount, portion }) => {
         <p>{foodName}</p>
       </div>
       <div className="column-c">
-        <p>{caloriesPerAmount * portion}kcal</p>
+        <p>{(caloriesPerAmount * portion).toFixed(2)}kcal</p>
       </div>
     </Link>
   );

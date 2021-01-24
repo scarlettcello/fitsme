@@ -10,7 +10,7 @@ const FoodForm = ({
   onCancelClick,
 }) => {
   const [date, setDate] = useState(
-    eatenFood !== undefined ? new Date(eatenFood.createdDate) : ""
+    eatenFood !== undefined ? new Date(eatenFood.createdDate) : new Date()
   );
   const [mealTime, setMealTime] = useState(
     eatenFood !== undefined ? eatenFood.mealTime : ""
@@ -92,7 +92,9 @@ const FoodForm = ({
         value={portion}
       />
 
-      <h4>Calories taken: {isNaN(takenCalories) ? null : takenCalories}</h4>
+      <h4>
+        Calories taken: {isNaN(takenCalories) ? null : takenCalories.toFixed(2)}
+      </h4>
 
       <p>{errorMsg !== "" ? errorMsg : null}</p>
       <div className="button-group">

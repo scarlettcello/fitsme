@@ -1,5 +1,5 @@
 import React from "react";
-import { Router, Switch } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
 import history from "../history";
 import Home from "../components/Home";
 import AddFood from "../components/AddFood";
@@ -7,6 +7,7 @@ import Calendar from "../components/Calendar";
 import Dashboard from "../components/Dashboard";
 import EditFood from "../components/EditFood";
 import Login from "../components/Login";
+import NotFound from "../components/NotFound";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
 
@@ -22,6 +23,7 @@ const AppRoute = () => {
         <PrivateRoute path="/calendar" component={Calendar} />
         <PrivateRoute path="/edit/:id" component={EditFood} />
         <PublicRoute path="/login" component={Login} />
+        <Route component={NotFound} />
       </Switch>
     </Router>
   );

@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import useFatsecret from "../hooks/useFatsecret";
 import { connect } from "react-redux";
 import SearchBar from "./SearchBar";
 import SearchResult from "./SearchResult";
 import { setFoods } from "../actions/foods";
+import axios from "axios";
 
 const SearchFood = () => {
   const [foods, search] = useFatsecret();
   const [term, setTerm] = useState("");
   const [isFoodSearched, setIsFoodSearched] = useState(false);
+
+  useEffect(() => {
+    axios.get("/auth");
+  }, [foods]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

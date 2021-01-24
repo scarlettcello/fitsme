@@ -14,7 +14,7 @@ const DaysSummary = ({ totalCalories, date }) => {
         <h2 className="summary-title">
           {date}
           <br />
-          Total: <span>{totalCalories}</span> Kcal
+          Total: <span>{totalCalories.toFixed(2)}</span> Kcal
         </h2>
         <Link
           className={location.pathname === "/calendar" ? "is-hidden" : ""}
