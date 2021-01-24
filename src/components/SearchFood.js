@@ -11,9 +11,9 @@ const SearchFood = () => {
   const [term, setTerm] = useState("");
   const [isFoodSearched, setIsFoodSearched] = useState(false);
 
-  useEffect(() => {
-    axios.get("/auth");
-  }, [foods]);
+  // useEffect(() => {
+  //   axios.get("/auth");
+  // }, [foods]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
