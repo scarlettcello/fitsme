@@ -72,6 +72,7 @@ app.get("/api", (req, res) => {
 });
 
 app.get("*", (req, res) => {
+  console.log(req.protocol, req.hostname, req.url);
   res.sendFile(path.join(publicPath, "index.html"));
 });
 
