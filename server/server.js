@@ -41,6 +41,7 @@ app.get("/", (req, res, next) => {
     request(options, (error, response, body) => {
       if (error) throw new Error(error);
       res.cookie("token", body.access_token, {
+        secure: false,
         maxAge: body.expires_in * 1000,
         httpOnly: true,
       });
