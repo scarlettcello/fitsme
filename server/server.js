@@ -15,7 +15,6 @@ const clientsecret = process.env.FATSECRET_CLIENT_PASSWORD;
 const app = express();
 app.use(cors());
 app.use(cookieParser());
-app.use(express.static(publicPath));
 app.enable("trust proxy");
 
 app.get("/", (req, res, next) => {
@@ -49,6 +48,13 @@ app.get("/", (req, res, next) => {
       res.json(body.access_token);
     });
   }
+  next();
+});
+
+app.use(express.static(publicPath));
+app.get("/", (req, res) => {
+  console.log(req.protocol, req.hostname, req.url);
+  res.sendFile(path.join(publicPath, "index.html"));
 });
 
 app.get("/api", (req, res) => {
@@ -70,11 +76,6 @@ app.get("/api", (req, res) => {
       },
     })
     .then((result) => res.send(result.data));
-});
-
-app.get("*", (req, res) => {
-  console.log(req.protocol, req.hostname, req.url);
-  res.sendFile(path.join(publicPath, "index.html"));
 });
 
 app.listen(port, () => {
